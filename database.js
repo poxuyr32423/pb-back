@@ -34,8 +34,9 @@ class DataBase {
 }
 
 export default new DataBase({
-  host: "localhost",
-  user: "root",
-  database: "pb",
-  password: "",
+  port: "3306",
+  user: "gen_user",
+  host: "188.225.9.103",
+  database: "default_db",
+  password: "cz971pwdb9"
 });
