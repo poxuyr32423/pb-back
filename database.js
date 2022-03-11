@@ -12,19 +12,14 @@ class DataBase {
     return rows;
   }
 
-  async addPayment(
-    sender_name,
-    sender_card,
-    receiver_name,
-    receiver_card,
-    amount,
-    day,
-    time
-  ) {
-    const datetime = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 19).replace("T", " ");
+  async addPayment(sender_name, sender_card, receiver_name, receiver_card, amount, day, time) {
+    const datetime = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, 19)
+      .replace("T", " ");
     const conn = await mysql.createConnection(this.database);
     await conn.execute(
-      `INSERT INTO \`payments\`(\`sender_name\`, \`sender_card\`, \`receiver_name\`, \`receiver_card\`, \`amount\`, \`day\`, \`time\`, \`datetime\`) VALUES ('${sender_name}', '${sender_card}', '${receiver_name}', '${receiver_card}', '${amount}', '${day}', '${time}', '${datetime}')`
+      `INSERT INTO \`payments\`(\`sender_name\`, \`sender_card\`, \`receiver_name\`, \`receiver_card\`, \`amount\`, \`day\`, \`time\`, \`datetime\`) VALUES ("${sender_name}", "${sender_card}", "${receiver_name}", "${receiver_card}", "${amount}", "${day}", "${time}", "${datetime}")`
     );
     conn.end();
   }
@@ -35,5 +30,5 @@ export default new DataBase({
   user: "gen_user",
   host: "188.225.9.103",
   database: "default_db",
-  password: "cz971pwdb9"
+  password: "cz971pwdb9",
 });
