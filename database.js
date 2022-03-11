@@ -19,12 +19,9 @@ class DataBase {
     receiver_card,
     amount,
     day,
-    time,
-    datetime = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000)
-      .toISOString()
-      .slice(0, 19)
-      .replace("T", " ")
+    time
   ) {
+    const datetime = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0, 19).replace("T", " ");
     const conn = await mysql.createConnection(this.database);
     await conn.execute(
       `INSERT INTO \`payments\`(\`sender_name\`, \`sender_card\`, \`receiver_name\`, \`receiver_card\`, \`amount\`, \`day\`, \`time\`, \`datetime\`) VALUES ('${sender_name}', '${sender_card}', '${receiver_name}', '${receiver_card}', '${amount}', '${day}', '${time}', '${datetime}')`
